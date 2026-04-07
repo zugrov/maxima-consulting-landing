@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import VATCalculator from "@/components/VATCalculator";
 
 export default function Home() {
   return (
@@ -22,6 +23,12 @@ export default function Home() {
                 className="text-sm text-slate-600 hover:text-slate-900 transition-colors hidden md:block"
               >
                 НДС‑2026
+              </button>
+              <button 
+                onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                className="text-sm px-4 py-2 border border-teal-200 text-teal-700 rounded-full hover:bg-teal-50 transition-colors hidden md:block"
+              >
+                Калькулятор НДС
               </button>
               <button 
                 onClick={() => document.getElementById('cases')?.scrollIntoView({ behavior: 'smooth' })}
@@ -258,6 +265,20 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* VAT Calculator Section */}
+        <section id="calculator" className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="mb-12">
+              <p className="text-xs font-semibold tracking-widest text-slate-500 uppercase mb-2">Интерактивный инструмент</p>
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Калькулятор НДС‑2026</h2>
+              <p className="text-slate-600 max-w-2xl">
+                Введите параметры вашего бизнеса и узнайте, как НДС‑2026 повлияет на вашу прибыль. Калькулятор покажет все возможные сценарии.
+              </p>
+            </div>
+            <VATCalculator />
           </div>
         </section>
 
