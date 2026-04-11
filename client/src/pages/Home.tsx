@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import VATCalculator from "@/components/VATCalculator";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   return (
@@ -9,9 +10,11 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-600 to-teal-700 flex items-center justify-center text-white font-bold text-lg">
-                M
-              </div>
+              <img 
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030571964/MpsqaYpbGEs8uY4WTVCFRY/maxima_logo_792eb74e.png" 
+                alt="Maxima Consulting Logo" 
+                className="w-10 h-10"
+              />
               <div>
                 <div className="font-bold text-sm tracking-wider text-slate-900">MAXIMA CONSULTING</div>
                 <div className="text-xs tracking-widest text-slate-500 uppercase">Финансовый консалтинг</div>
@@ -144,13 +147,13 @@ export default function Home() {
                 </p>
               </div>
               <div id="ndsv-block" className="p-6 bg-teal-50 rounded-lg border border-teal-200">
-                <div className="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-semibold mb-3">
-                  Фокус на НДС‑2026
-                </div>
-                <h3 className="font-bold text-slate-900 mb-2">Предприниматель перед переходом на НДС</h3>
-                <p className="text-slate-600 text-sm">
-                  С 2026 года НДС начинается с 20 млн руб. оборота по ставке 22%. Как перестроить ценообразование?
-                </p>
+                  <div className="inline-block px-3 py-1 bg-teal-100 text-teal-700 rounded-full text-xs font-semibold mb-3">
+                    Фокус на НДС‑2026
+                  </div>
+                  <h3 className="font-bold text-slate-900 mb-2">Предприниматель перед переходом на НДС</h3>
+                  <p className="text-slate-600 text-sm">
+                    С 2026 года НДС начинается с 20 млн руб. оборота по ставке 22%. Как перестроить ценообразование?
+                  </p>
               </div>
             </div>
           </div>
@@ -311,9 +314,9 @@ export default function Home() {
         <section id="signup" className="py-20 bg-gradient-to-br from-teal-50 via-white to-slate-50 border-t border-slate-200">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-lg">
-              <div className="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-4">
-                ● Финансовая диагностика · 60 минут · бесплатно
-              </div>
+            <div className="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-4">
+              ● Финансовая диагностика · 60 минут · бесплатно
+            </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Разберём, где в вашем бизнесе теряются деньги — за одну встречу
               </h2>
@@ -321,31 +324,7 @@ export default function Home() {
                 Заполните короткую форму, и мы свяжемся с вами, чтобы согласовать удобное время.
                 Никакого давления и продаж: сначала разберёмся в вашей ситуации, а потом вы сами решите.
               </p>
-              <form className="space-y-4 mb-6">
-                <input 
-                  type="text" 
-                  placeholder="Ваше имя" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600"
-                />
-                <input 
-                  type="text" 
-                  placeholder="Телефон или Telegram" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600"
-                />
-                <input 
-                  type="text" 
-                  placeholder="Оборот бизнеса в год (примерно)" 
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600"
-                />
-                <textarea 
-                  placeholder="Кратко опишите вашу ситуацию" 
-                  rows={3}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600 resize-none"
-                />
-                <button type="submit" className="w-full px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-colors">
-                  Записаться на диагностику
-                </button>
-              </form>
+              <ContactForm />
               <p className="text-xs text-slate-500 text-center">
                 Первая встреча бесплатна. Ваши данные не передаются третьим лицам, по запросу подписываем NDA.
               </p>
