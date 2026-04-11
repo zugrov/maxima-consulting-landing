@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { trpc } from '@/lib/trpc';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -8,7 +9,6 @@ export default function ContactForm() {
     revenue: '',
     situation: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -17,6 +17,8 @@ export default function ContactForm() {
       [name]: value,
     }));
   };
+
+  const submitMutation = trpc.contact.submit.useMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,27 +37,15 @@ export default function ContactForm() {
       return;
     }
 
-    setIsLoading(true);
-
     try {
-      // Send to backend API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          contact: formData.contact,
-          revenue: formData.revenue,
-          situation: formData.situation,
-          timestamp: new Date().toISOString(),
-        }),
+      // Send to backend via tRPC
+      await submitMutation.mutateAsync({
+        name: formData.name,
+        contact: formData.contact,
+        revenue: formData.revenue,
+        situation: formData.situation,
+        timestamp: new Date().toISOString(),
       });
-
-      if (!response.ok) {
-        throw new Error('Ошибка при отправке формы');
-      }
 
       toast.success('Спасибо! Мы свяжемся с вами в ближайшее время.');
       
@@ -72,8 +62,6 @@ export default function ContactForm() {
       
       // Provide fallback contact info
       toast.info('Email: zugrov@gmail.com | Telegram: @maxima_CFO_light');
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -86,7 +74,7 @@ export default function ContactForm() {
         onChange={handleChange}
         placeholder="Ваше имя" 
         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600"
-        disabled={isLoading}
+        disabled={submitMutation.isPending}
       />
       <input 
         type="text" 
@@ -95,7 +83,7 @@ export default function ContactForm() {
         onChange={handleChange}
         placeholder="Телефон или Telegram" 
         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600"
-        disabled={isLoading}
+        disabled={submitMutation.isPending}
       />
       <input 
         type="text" 
@@ -104,7 +92,7 @@ export default function ContactForm() {
         onChange={handleChange}
         placeholder="Оборот бизнеса в год (примерно)" 
         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600"
-        disabled={isLoading}
+        disabled={submitMutation.isPending}
       />
       <textarea 
         name="situation"
@@ -113,14 +101,13 @@ export default function ContactForm() {
         placeholder="Кратко опишите вашу ситуацию" 
         rows={3}
         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600 resize-none"
-        disabled={isLoading}
       />
       <button 
         type="submit" 
-        disabled={isLoading}
+        disabled={submitMutation.isPending}
         className="w-full px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700 transition-colors disabled:bg-slate-400 disabled:cursor-not-allowed"
       >
-        {isLoading ? 'Отправка...' : 'Записаться на диагностику'}
+        {submitMutation.isPending ? 'Отправка...' : 'Записаться на диагностику'}
       </button>
     </form>
   );
