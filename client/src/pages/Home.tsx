@@ -44,6 +44,9 @@ export default function Home() {
               >
                 Кейсы
               </button>
+              <a href="tel:+79106407686" className="text-sm text-slate-600 hover:text-teal-600 transition-colors hidden md:block">
+                +7 910 640-76-86
+              </a>
               <a href="#signup" className="text-sm px-4 py-2 bg-teal-600 text-white rounded-full hover:bg-teal-700 transition-colors">
                 Записаться
               </a>
@@ -329,6 +332,11 @@ export default function Home() {
                 Заполните короткую форму, и мы свяжемся с вами, чтобы согласовать удобное время.
                 Никакого давления и продаж: сначала разберёмся в вашей ситуации, а потом вы сами решите.
               </p>
+              <p className="text-slate-600 mb-8 text-sm">
+                Или свяжитесь с нами напрямую: <a href="tel:+79106407686" className="text-teal-600 hover:text-teal-700 font-semibold">+7 910 640-76-86</a> · 
+                <a href="https://t.me/maxima_cfo" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 font-semibold ml-2">Telegram</a> · 
+                <a href="https://vk.ru/maxima_consulting" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-700 font-semibold ml-2">ВКонтакте</a>
+              </p>
               <ContactForm />
               <p className="text-xs text-slate-500 text-center">
                 Первая встреча бесплатна. Ваши данные не передаются третьим лицам, по запросу подписываем NDA.
@@ -339,9 +347,45 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-8 border-t border-slate-800">
+      <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <h3 className="font-semibold text-white mb-4">Контакты</h3>
+              <div className="space-y-2 text-sm">
+                <a href="tel:+79106407686" className="hover:text-teal-400 transition-colors block">
+                  +7 910 640-76-86
+                </a>
+                <a href="https://t.me/maxima_cfo" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors block">
+                  Telegram: @maxima_cfo
+                </a>
+                <a href="https://vk.ru/maxima_consulting" target="_blank" rel="noopener noreferrer" className="hover:text-teal-400 transition-colors block">
+                  ВКонтакте
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-white mb-4">Услуги</h3>
+              <div className="space-y-2 text-sm">
+                <button onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-teal-400 transition-colors block text-left">
+                  Калькулятор НДС
+                </button>
+                <button onClick={() => document.getElementById('cases')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-teal-400 transition-colors block text-left">
+                  Кейсы
+                </button>
+                <a href="#signup" className="hover:text-teal-400 transition-colors block">
+                  Записаться на диагностику
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold text-white mb-4">О нас</h3>
+              <p className="text-sm">
+                Финансовый консалтинг для собственников бизнеса с выручкой от 5 до 100 млн руб.
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-slate-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
             <div>
               © <span id="year"></span> MAXIMA CONSULTING. Финансовый консалтинг для собственника бизнеса.
             </div>
