@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { publicProcedure, router } from "../_core/trpc";
 import { notifyOwner } from "../_core/notification";
+import { appendRow } from "../services/googleSheets";
 
 // Validation schema for contact form
 const contactFormSchema = z.object({
@@ -49,6 +50,28 @@ Telegram: ${telegramHandle}
   }
 }
 
+/**
+ * Append contact data to Google Sheets
+ */
+async function appendToGoogleSheets(data: ContactFormInput & { timestamp: string }): Promise<void> {
+  try {
+    const spreadsheetId = process.env.GOOGLE_SHEETS_ID;
+
+    if (!spreadsheetId) {
+      console.warn(
+        "[Google Sheets] GOOGLE_SHEETS_ID not set, skipping sheet update"
+      );
+      return;
+    }
+
+    await appendRow(spreadsheetId, data);
+    console.log("[Google Sheets] Data appended successfully");
+  } catch (error) {
+    console.error("[Google Sheets] Failed to append data:", error);
+    // Don't throw - Google Sheets is not critical to form submission
+  }
+}
+
 export const contactRouter = router({
   /**
    * Submit contact form
@@ -62,12 +85,14 @@ export const contactRouter = router({
         const validatedData = contactFormSchema.parse(input);
 
         // Add timestamp if not provided
-        if (!validatedData.timestamp) {
-          validatedData.timestamp = new Date().toISOString();
-        }
+        const timestamp = validatedData.timestamp || new Date().toISOString();
+        const dataWithTimestamp = { ...validatedData, timestamp };
 
         // Send notifications
-        await sendContactNotifications(validatedData);
+        await sendContactNotifications(dataWithTimestamp);
+
+        // Append to Google Sheets
+        await appendToGoogleSheets(dataWithTimestamp);
 
         return {
           success: true,

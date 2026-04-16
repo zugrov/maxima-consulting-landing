@@ -80,7 +80,7 @@ export default function Home() {
               <div className="space-y-2 text-sm text-slate-600">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-teal-600"></span>
-                  Диагностика — 60 минут · без обязательств
+                  Диагностика — 20-30 минут (бесплатно) · без обязательств
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-teal-600"></span>
@@ -207,7 +207,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
-                { num: "1", title: "Диагностика · 60 минут", desc: "Обсуждаем ваш бизнес, выручку, структуру расходов. Без домашних заданий — достаточно честного разговора." },
+                { num: "1", title: "Диагностика · 20-30 минут (бесплатно)", desc: "Обсуждаем ваш бизнес, выручку, структуру расходов. Без домашних заданий — достаточно честного разговора." },
                 { num: "2", title: "Аудит и сборка картины · 3–7 дней", desc: "Работаем с вашими данными: 1С, Excel, выгрузки из банка. Собираем реальную P&L и Cash Flow." },
                 { num: "3", title: "Разбор и решения · встреча 90 минут", desc: "Показываем, что нашли, объясняем на человеческом языке, предлагаем конкретные шаги." },
                 { num: "4", title: "Сопровождение (опционально)", desc: "Ежемесячный мониторинг, ответы на вопросы, помощь в переговорах с банком и партнёрами." },
@@ -320,7 +320,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-lg">
             <div className="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold mb-4">
-              ● Финансовая диагностика · 60 минут · бесплатно
+              ● Финансовая диагностика · 20-30 минут (бесплатно)
             </div>
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Разберём, где в вашем бизнесе теряются деньги — за одну встречу
