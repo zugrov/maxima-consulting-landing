@@ -1,7 +1,9 @@
 import { useAuth } from "@/_core/hooks/useAuth";
+
 import { Button } from "@/components/ui/button";
 import VATCalculator from "@/components/VATCalculator";
 import ContactForm from "@/components/ContactForm";
+import FloatingChatButton from "@/components/FloatingChatButton";
 
 export default function Home() {
   // The userAuth hooks provides authentication state
@@ -398,6 +400,9 @@ export default function Home() {
       </footer>
 
       <script>{`document.getElementById('year').textContent = new Date().getFullYear();`}</script>
+
+      {/* Floating Chat Button */}
+      <FloatingChatButton />
     </div>
   );
 }
